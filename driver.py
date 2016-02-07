@@ -1,8 +1,10 @@
 import serial
+import pyautogui
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
-conv = {0: 'start',
+btnnames = {
+        0: 'start',
         1: 'select',
         2: 'A',
         3: 'B',
@@ -10,6 +12,16 @@ conv = {0: 'start',
         5: 'right',
         6: 'down',
         7: 'left',
+        }
+
+conv = {0: 'enter',
+        1: 'esc',
+        2: 'v',
+        3: 'c',
+        4: 'w',
+        5: 'd',
+        6: 's',
+        7: 'a',
         }
 
 while True:
@@ -26,6 +38,8 @@ while True:
     print(updown, btnid)
     if(updown):
         print(conv[btnid], "up")
+        pyautogui.keyUp(conv[btnid])
     else:
         print(conv[btnid], "down")
+        pyautogui.keyDown(conv[btnid])
 

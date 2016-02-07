@@ -11,7 +11,7 @@ void setup()
 {
     Serial.begin(9600);
 
-    // activate pull-up resistors
+    // activate pull-up resistors for port D
     PORTD = ~(char)0;
 }
 

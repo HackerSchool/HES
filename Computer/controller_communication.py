@@ -62,6 +62,7 @@ class HESInterface:
     def __exit__(self, *_):
         self.interface.close()
 
+
 if __name__ == '__main__':
     HES = HESInterface()
     while True:
