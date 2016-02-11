@@ -1,23 +1,30 @@
-#include "pindef.h"
-#include <string.h>
-#include <stdint.h>
+#define UP 18
+#define DOWN 2
+#define LEFT 17 
+#define RIGHT 19
 
-#define UP 4
-#define DOWN 5
-#define LEFT 6 
-#define RIGHT 7
+#define SELECT 7
+#define START 12
 
-#define SELECT 8
-#define START 9
+#define A 11
+#define B 6
 
-#define A 10
-#define B 11
+#define GND1 4
+#define GND2 14
+#define GND3 15
 
-#define LED 12
+#define LED 13
 
 void setup() {
     // initialize serial communication at 9600 bits per second:
     Serial.begin(9600);
+
+    pinMode(GND1, OUTPUT);
+    pinMode(GND2, OUTPUT);
+    pinMode(GND3, OUTPUT);
+    digitalWrite(GND1, LOW);
+    digitalWrite(GND2, LOW);
+    digitalWrite(GND3, LOW);
 
     pinMode(UP, INPUT_PULLUP);
     pinMode(DOWN, INPUT_PULLUP);
