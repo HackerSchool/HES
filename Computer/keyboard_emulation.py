@@ -4,14 +4,18 @@ from time import sleep
 
 # Internal
 from controller_communication import HESInterface
-from button_translation import translate_button
+from button_bindings import button_binding
 
 
 pyautogui.PAUSE = 0
 with HESInterface() as controller:
     while True:
-        key = translate_button(controller.read_data())
+        status, button = controller.read_data()
+        key = button_binding(button)
         if key:
-            pyautogui.press('a')
+            if status == 'P':
+                pyautogui.keyDown(key)
+            if status == 'R':
+                pyautogui.keyUp(key)
             key = None
-            sleep(0.1)
+            sleep(0.01)

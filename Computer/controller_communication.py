@@ -51,7 +51,8 @@ class HESInterface:
         while block:
             received = self.interface.readline().rstrip()
             if received != b'':
-                return received.decode()
+                data = received.decode()
+                return data[0], data[1]
 
 #    def send_data(self, data):
 #        self.interface.write(data.encode())

@@ -33,7 +33,7 @@ void setup() {
     digitalWrite(GND2, LOW);
     digitalWrite(GND3, LOW);
 
-    for (int i=0; i < NUMBUTTONS; i++)
+    for (byte i=0; i < NUMBUTTONS; i++)
         pinMode(buttons[i], INPUT_PULLUP);
 
     pinMode(LED, OUTPUT);
@@ -105,20 +105,27 @@ SIGNAL(TIMER2_OVF_vect) {
 
 
 void loop()
-{
+{   
     digitalWrite(LED, HIGH);
-    while(true)
-    {
-        if (!digitalRead(SELECT)) Serial.write("select\n");
-        if (!digitalRead(START)) Serial.write("start\n");
-        if (!digitalRead(UP)) Serial.write("up\n");
-        if (!digitalRead(DOWN)) Serial.write("down\n");
-        if (!digitalRead(LEFT)) Serial.write("left\n");
-        if (!digitalRead(RIGHT)) Serial.write("right\n");      
-        if (!digitalRead(A)) Serial.write("a\n");
-        if (!digitalRead(B)) Serial.write("b\n");       
     
-        delay(10);
+    for (byte i = 0; i < NUMBUTTONS; i++){
+        if (justpressed[i]) {
+            justpressed[i] = 0;
+            Serial.print("P");
+            Serial.println(i);            
+        }
+        if (justreleased[i]) {
+            justreleased[i] = 0;
+            Serial.print("R");
+            Serial.println(i);
+            
+        }
+        /*if (pressed[i]) {
+            Serial.print(i, DEC);
+            Serial.println(" pressed");
+            // is the button pressed down at this moment
+        }*/      
     }
+    delay(1);
 }
 
