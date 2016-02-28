@@ -44,10 +44,10 @@ class ButtonBindings:
     def reload_profiles(self):
         self.profiles = json.load(open(settings.profiles_file_name))
 
-    def load_profile(self, profile_name):
+    def choose_profile(self, profile_name):
         self.current_profile = profile_name
 
-    def add_profile(self, profile_name, profile):
+    def create_profile(self, profile_name, profile):
         self.profiles[profile_name] = profile
 
     def remove_profile(self, profile_name):
