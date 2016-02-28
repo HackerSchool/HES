@@ -55,7 +55,9 @@ void setup() {
     TCCR2B = 1<<CS22 | 1<<CS21 | 1<<CS20;
 
     //Timer2 Overflow Interrupt Enable
-    TIMSK2 |= 1<<TOIE2;   
+    TIMSK2 |= 1<<TOIE2;
+
+    digitalWrite(LED, HIGH);
 }
 
 
@@ -105,9 +107,7 @@ SIGNAL(TIMER2_OVF_vect) {
 
 
 void loop()
-{   
-    digitalWrite(LED, HIGH);
-    
+{       
     for (byte i = 0; i < NUMBUTTONS; i++){
         if (justpressed[i]) {
             justpressed[i] = 0;

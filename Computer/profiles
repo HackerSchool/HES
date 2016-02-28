@@ -1,0 +1,1 @@
+{"default": {"a": "v", "left": "a", "b": "c", "start": "space", "select": "esc", "up": "w", "right": "d", "down": "s"}, "duck_game": {"a": "c", "left": "a", "b": "v", "start": "e", "select": "q", "up": "w", "right": "d", "down": "s"}}
