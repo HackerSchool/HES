@@ -3,7 +3,7 @@ import settings
 
 
 class ButtonBindings:
-    def __init__(self):
+    def __init__(self, current_profile='default'):
         self.button_names = {'0': 'select',
                              '1': 'start',
                              '2': 'up',
@@ -14,7 +14,7 @@ class ButtonBindings:
                              '7': 'b'
                              }
 
-        self.current_profile = 'default'
+        self.current_profile = current_profile
         self.profiles = {'default': {'up': 'w',
                                      'down': 's',
                                      'left': 'a',
@@ -51,4 +51,7 @@ class ButtonBindings:
         self.profiles[profile_name] = profile
 
     def remove_profile(self, profile_name):
+        if profile_name == 'default':
+            print("can't delete the default profile")
         del self.profiles[profile_name]
+
