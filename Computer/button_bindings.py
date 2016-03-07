@@ -44,8 +44,20 @@ class ButtonBindings:
     def reload_profiles(self):
         self.profiles = json.load(open(settings.profiles_file_name))
 
+    def get_profile_names(self):
+        return list(self.profiles.keys())
+
     def choose_profile(self, profile_name):
         self.current_profile = profile_name
+
+    def get_current_profile(self):
+        return self.profiles[self.current_profile]
+
+    def edit_binding(self, button, key):
+        if self.current_profile == 'default':
+            print("can't edit the default profile")
+        else:
+            self.profiles[self.current_profile][button] = key
 
     def create_profile(self, profile_name, profile):
         self.profiles[profile_name] = profile
@@ -53,5 +65,5 @@ class ButtonBindings:
     def remove_profile(self, profile_name):
         if profile_name == 'default':
             print("can't delete the default profile")
-        del self.profiles[profile_name]
-
+        else:
+            del self.profiles[profile_name]
