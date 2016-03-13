@@ -60,7 +60,10 @@ class ButtonBindings:
             self.profiles[self.current_profile][button] = key
 
     def create_profile(self, profile_name, profile):
-        self.profiles[profile_name] = profile
+        if profile_name == 'default':
+            print("can't overwrite the default profile")
+        else:
+            self.profiles[profile_name] = profile
 
     def remove_profile(self, profile_name):
         if profile_name == 'default':
