@@ -1,15 +1,16 @@
 from time import sleep
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtCore, QtGui, QtWidgets
+
 from gui.edit_bindings_qtdesigner import Ui_MainWindow
 from button_bindings import ButtonBindings
 
 
-class MyWindow(QtGui.QMainWindow):
+class MyWindow(QtWidgets.QMainWindow):
     def __init__(self, bindings=ButtonBindings('default')):
         super(MyWindow, self).__init__()
         # compile resources file with:
-        # pyuic4 -x gui/edit_bindings_qtdesigner.ui -o gui/edit_bindings_qtdesigner.py
-        # pyrcc4.exe -py3 -o gui/resources_rc.py gui/resources.qrc
+        # pyuic5 -x gui/edit_bindings_qtdesigner.ui -o gui/edit_bindings_qtdesigner.py
+        # pyrcc5.exe -o gui/resources_rc.py gui/resources.qrc
 
         # Set up the user interface from Designer.
         self.ui = Ui_MainWindow()
@@ -68,6 +69,6 @@ class MyWindow(QtGui.QMainWindow):
 if __name__ == '__main__':
     import sys
 
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = MyWindow()
     sys.exit(app.exec_())
