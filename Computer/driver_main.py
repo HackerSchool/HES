@@ -1,22 +1,23 @@
 # External
-import pyautogui
+import pyautogui  # pip install pillow; pip install pyautogui
 from time import sleep
 
 # Internal
 from controller_communication import HESInterface
 from button_bindings import ButtonBindings
+import settings
 
-
-pyautogui.PAUSE = 0
+pyautogui.PAUSE = 0  # No delay when pressing/releasing keys
 button_bindings = ButtonBindings()
+
 with HESInterface() as controller:
     while True:
-        status, button = controller.read_data()
+        action, button = controller.read_data()
         key = button_bindings.translate_button(button)
         if key:
-            if status == 'P':
+            if action == 'P':  # pressed
                 pyautogui.keyDown(key)
-            if status == 'R':
+            if action == 'R':  # released
                 pyautogui.keyUp(key)
             key = None
-            sleep(0.001)
+            sleep(settings.poll_delay)
