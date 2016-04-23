@@ -3,30 +3,14 @@ import settings
 
 
 class ButtonBindings:
+    """
+    This class handles the button profiles. It can translate a button to its mapped key
+     and create/modify/delete profiles.
+    """
     def __init__(self, current_profile='default'):
-        self.button_names = {'0': 'select',
-                             '1': 'start',
-                             '2': 'up',
-                             '3': 'down',
-                             '4': 'left',
-                             '5': 'right',
-                             '6': 'a',
-                             '7': 'b'
-                             }
-
+        self.button_names = settings.button_names
+        self.profiles = self.load_profiles()
         self.current_profile = current_profile
-        self.profiles = {'default': {'up': 'w',
-                                     'down': 's',
-                                     'left': 'a',
-                                     'right': 'd',
-                                     'a': 'v',
-                                     'b': 'c',
-                                     'select': 'esc',
-                                     'start': 'space'
-                                     },
-                         }
-
-        self.reload_profiles()
 
     def translate_button(self, pressed_button):
         try:
@@ -41,8 +25,12 @@ class ButtonBindings:
     def store_profiles(self):
         json.dump(self.profiles, open(settings.profiles_file_name, 'w'))
 
+    @staticmethod
+    def load_profiles():
+        return json.load(open(settings.profiles_file_name))
+
     def reload_profiles(self):
-        self.profiles = json.load(open(settings.profiles_file_name))
+        self.profiles = self.load_profiles()
 
     def get_profile_names(self):
         return list(self.profiles.keys())
@@ -70,3 +58,18 @@ class ButtonBindings:
             print("can't delete the default profile")
         else:
             del self.profiles[profile_name]
+
+
+if __name__ == '__main__':
+    # in case the file becomes corrupted, run this file to recreate it with the default profile
+    profiles = {'default': {'up': 'w',
+                            'down': 's',
+                            'left': 'a',
+                            'right': 'd',
+                            'a': 'v',
+                            'b': 'c',
+                            'select': 'esc',
+                            'start': 'space'
+                            },
+                }
+    json.dump(profiles, open(settings.profiles_file_name, 'w'))

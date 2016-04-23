@@ -1,6 +1,8 @@
+# External
 from time import sleep
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets  # https://www.riverbankcomputing.com/software/pyqt/download5
 
+# Internal
 from gui.edit_bindings_qtdesigner import Ui_MainWindow
 from button_bindings import ButtonBindings
 
