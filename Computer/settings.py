@@ -7,8 +7,6 @@ debug_port_detection = False
 forced_port = 'COM3'
 baud_rate = 9600
 
-poll_delay = 0.001  # seconds
-
 button_names = {'0': 'select',
                 '1': 'start',
                 '2': 'up',
