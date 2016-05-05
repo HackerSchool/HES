@@ -8,8 +8,9 @@ class ButtonBindings:
      and create/modify/delete profiles.
     """
     def __init__(self, current_profile='default'):
+        self.profiles = None
         self.button_names = settings.button_names
-        self.profiles = self.load_profiles()
+        self.load_profiles()
         self.current_profile = current_profile
 
     def translate_button(self, pressed_button):
@@ -23,17 +24,27 @@ class ButtonBindings:
             return None
 
     def store_profiles(self):
-        json.dump(self.profiles, open(settings.profiles_file_name, 'w'))
+        with open(settings.profiles_file_name, 'w') as profiles_file:
+            json.dump(self.profiles, profiles_file)
 
-    @staticmethod
-    def load_profiles():
-        return json.load(open(settings.profiles_file_name))
+    def load_profiles(self):
+        with open(settings.profiles_file_name, 'r') as profiles_file:
+            self.profiles = json.load(profiles_file)
 
-    def reload_profiles(self):
-        self.profiles = self.load_profiles()
+    def get_profile_names(self):
+        return list(self.profiles.keys())
 
     def choose_profile(self, profile_name):
         self.current_profile = profile_name
+
+    def get_current_profile(self):
+        return self.profiles[self.current_profile]
+
+    def get_binding(self, button):
+        return self.profiles[self.current_profile][button]
+
+    def edit_binding(self, button, key):
+        self.profiles[self.current_profile][button] = key
 
     def create_profile(self, profile_name, profile):
         self.profiles[profile_name] = profile
@@ -41,7 +52,15 @@ class ButtonBindings:
     def remove_profile(self, profile_name):
         if profile_name == 'default':
             print("can't delete the default profile")
-        del self.profiles[profile_name]
+        else:
+            del self.profiles[profile_name]
+            self.current_profile = None
+            self.store_profiles()
+
+    @staticmethod
+    def get_possible_keys():
+        with open(settings.possible_keys, 'r') as possible_keys_file:
+            return json.load(possible_keys_file)
 
 
 if __name__ == '__main__':
@@ -56,4 +75,5 @@ if __name__ == '__main__':
                             'start': 'space'
                             },
                 }
-    json.dump(profiles, open(settings.profiles_file_name, 'w'))
+    with open(settings.profiles_file_name, 'w') as profiles_file:
+        json.dump(profiles, profiles_file)
