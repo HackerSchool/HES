@@ -1,5 +1,8 @@
+# External
 import json
-import settings
+
+# Internal
+import Computer.settings as settings
 
 
 class ButtonBindings:
@@ -75,5 +78,5 @@ if __name__ == '__main__':
                             'start': 'space'
                             },
                 }
-    with open(settings.profiles_file_name, 'w') as profiles_file:
-        json.dump(profiles, profiles_file)
+    with open(settings.profiles_file_name, 'w') as file:
+        json.dump(profiles, file)

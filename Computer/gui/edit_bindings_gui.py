@@ -1,18 +1,19 @@
 # External
 from time import sleep
 from PyQt5 import QtCore, QtGui, QtWidgets  # https://www.riverbankcomputing.com/software/pyqt/download5
+import sys
 
 # Internal
-from gui.edit_bindings_qtdesigner import Ui_MainWindow
-from button_bindings import ButtonBindings
+from Computer.gui.edit_bindings_qtdesigner import Ui_MainWindow
+from Computer.button_bindings import ButtonBindings
 
 
 class MyWindow(QtWidgets.QMainWindow):
-    def __init__(self, bindings=ButtonBindings('default')):
+    def __init__(self, bindings=ButtonBindings()):
         super(MyWindow, self).__init__()
         # compile resources file with:
         # pyuic5 -x gui/edit_bindings_qtdesigner.ui -o gui/edit_bindings_qtdesigner.py
-        # pyrcc5.exe -o gui/resources_rc.py gui/resources.qrc
+        # pyrcc5.exe -o resources_rc.py gui/resources.qrc
 
         # Set up the user interface from Designer.
         self.ui = Ui_MainWindow()
@@ -91,9 +92,10 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.input_profile.setCurrentIndex(current_index)
 
 
-if __name__ == '__main__':
-    import sys
-
+def run_gui(button_bindings=ButtonBindings()):
     app = QtWidgets.QApplication(sys.argv)
-    window = MyWindow()
+    window = MyWindow(button_bindings)
     sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    run_gui()
