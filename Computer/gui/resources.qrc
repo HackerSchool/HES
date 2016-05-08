@@ -1,5 +1,6 @@
 <RCC>
-  <qresource prefix="background">
-    <file>HES_front.png</file>
+  <qresource prefix="images">
+    <file>../resources/HES_front.png</file>
+    <file>../resources/H_icon.PNG</file>
   </qresource>
 </RCC>

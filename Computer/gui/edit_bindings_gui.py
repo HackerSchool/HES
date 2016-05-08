@@ -5,15 +5,15 @@ import sys
 
 # Internal
 from Computer.gui.edit_bindings_qtdesigner import Ui_MainWindow
-from Computer.button_bindings import ButtonBindings
+from Computer.driver.button_bindings import ButtonBindings
 
 
 class MyWindow(QtWidgets.QMainWindow):
     def __init__(self, bindings=ButtonBindings()):
         super(MyWindow, self).__init__()
-        # compile resources file with:
-        # pyuic5 -x gui/edit_bindings_qtdesigner.ui -o gui/edit_bindings_qtdesigner.py
-        # pyrcc5.exe -o resources_rc.py gui/resources.qrc
+        # compile ui and resources files with:
+        # pyuic5 -x --import-from Computer.resources gui/edit_bindings_qtdesigner.ui -o gui/edit_bindings_qtdesigner.py
+        # pyrcc5.exe -o resources/resources_rc.py gui/resources.qrc
 
         # Set up the user interface from Designer.
         self.ui = Ui_MainWindow()
@@ -95,7 +95,7 @@ class MyWindow(QtWidgets.QMainWindow):
 def run_gui(button_bindings=ButtonBindings()):
     app = QtWidgets.QApplication(sys.argv)
     window = MyWindow(button_bindings)
-    sys.exit(app.exec_())
+    app.exec_()
 
 if __name__ == '__main__':
     run_gui()

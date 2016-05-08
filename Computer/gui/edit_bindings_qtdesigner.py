@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/edit_bindings_qtdesigner.ui'
 #
-# Created by: PyQt5 UI code generator 5.5.1
+# Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -19,22 +19,25 @@ class Ui_MainWindow(object):
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(732, 348))
         MainWindow.setMaximumSize(QtCore.QSize(732, 348))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/resources/H_icon.PNG"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setAutoFillBackground(False)
-        MainWindow.setStyleSheet("image: url(:/background/HES_front.png);")
+        MainWindow.setStyleSheet("image: url(:/images/resources/HES_front.png)")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.input_profile = QtWidgets.QComboBox(self.centralwidget)
-        self.input_profile.setGeometry(QtCore.QRect(40, 20, 161, 21))
+        self.input_profile.setGeometry(QtCore.QRect(30, 20, 161, 21))
         self.input_profile.setObjectName("input_profile")
         self.action_save_new_profile = QtWidgets.QPushButton(self.centralwidget)
-        self.action_save_new_profile.setGeometry(QtCore.QRect(630, 20, 75, 23))
+        self.action_save_new_profile.setGeometry(QtCore.QRect(610, 20, 91, 23))
         self.action_save_new_profile.setObjectName("action_save_new_profile")
         self.action_delete_profile = QtWidgets.QPushButton(self.centralwidget)
-        self.action_delete_profile.setGeometry(QtCore.QRect(210, 20, 75, 23))
+        self.action_delete_profile.setGeometry(QtCore.QRect(200, 20, 75, 23))
         self.action_delete_profile.setObjectName("action_delete_profile")
         self.input_new_profile_name = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_new_profile_name.setGeometry(QtCore.QRect(470, 20, 151, 20))
+        self.input_new_profile_name.setGeometry(QtCore.QRect(450, 20, 151, 20))
         self.input_new_profile_name.setObjectName("input_new_profile_name")
         self.input_key_choice = QtWidgets.QComboBox(self.centralwidget)
         self.input_key_choice.setGeometry(QtCore.QRect(260, 100, 101, 21))
@@ -69,12 +72,12 @@ class Ui_MainWindow(object):
         self.down.setObjectName("down")
         self.controller_buttons.addButton(self.down)
         self.b = QtWidgets.QPushButton(self.centralwidget)
-        self.b.setGeometry(QtCore.QRect(520, 200, 41, 41))
+        self.b.setGeometry(QtCore.QRect(520, 150, 41, 41))
         self.b.setText("")
         self.b.setObjectName("b")
         self.controller_buttons.addButton(self.b)
         self.a = QtWidgets.QPushButton(self.centralwidget)
-        self.a.setGeometry(QtCore.QRect(610, 200, 41, 41))
+        self.a.setGeometry(QtCore.QRect(610, 150, 41, 41))
         self.a.setText("")
         self.a.setObjectName("a")
         self.controller_buttons.addButton(self.a)
@@ -95,13 +98,15 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "HackerEntertainmentSystem"))
+        self.action_save_new_profile.setToolTip(_translate("MainWindow", "Copy the currently selected profile with a new name"))
         self.action_save_new_profile.setText(_translate("MainWindow", "Create new"))
+        self.action_delete_profile.setToolTip(_translate("MainWindow", "Delete the currently selected profile"))
         self.action_delete_profile.setText(_translate("MainWindow", "Delete"))
         self.action_change_binding.setText(_translate("MainWindow", "Ok"))
         self.action_cancel_binding.setText(_translate("MainWindow", "Cancel"))
 
-import resources_rc
+from Computer.resources import resources_rc
 
 if __name__ == "__main__":
     import sys
