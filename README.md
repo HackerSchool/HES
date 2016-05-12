@@ -1,1 +1,2 @@
-# HES-Hacker-Entertainment-System
+HES (Hacker Entertainment System)
+=================================
