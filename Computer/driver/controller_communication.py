@@ -4,7 +4,7 @@ import serial  # pip install pyserial
 from serial.tools import list_ports
 
 # Internal
-import settings
+import Computer.settings as settings
 
 
 class HESInterface:
