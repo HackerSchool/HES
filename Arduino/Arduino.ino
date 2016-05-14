@@ -2,19 +2,19 @@
 #define PRESSEDLOGICLEVEL LOW
 
 #define GND1 4
-#define GND2 14
-#define GND3 15
+#define GND2 15
+#define GND3 11
 
-#define SELECT 7
-#define START 12
-#define UP 18
-#define DOWN 2
-#define LEFT 17 
-#define RIGHT 19
-#define A 11
+#define SELECT 12
+#define START 8
+#define UP 14
+#define DOWN 18
+#define LEFT 16 
+#define RIGHT 17
+#define A 7
 #define B 6
 
-#define LED 13
+#define LED 10
 
 byte buttons[] = {SELECT, START, UP, DOWN, LEFT, RIGHT, A, B}; // the analog 0-5 pins are also known as 14-19
 #define NUMBUTTONS sizeof(buttons)
